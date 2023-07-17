@@ -338,7 +338,7 @@ h4 {
     margin-right: 0.5em;
 }
 .logo a {
-    font-family: 'Roboto-Slab';
+    font-family: 'Roboto-Slab', serif;
     font-size: 1.75em;
     position: relative;
     font-weight: var(--fw8);
@@ -508,6 +508,15 @@ form.search button:hover{
     background-color: var(--white-color);
     overflow-y: auto;
     z-index:1000;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform .4s, visibility .4s;
+    will-change: transform, visibility;
+}
+.showmenu .site-off{
+    transform: translateX(0);
+    visibility: visible;
+    transform: transform .4s 0s, visibility 0s 0s;
 }
 .off-canvas {
     width: var(--percent100);
@@ -557,6 +566,13 @@ form.search button:hover{
     font-weight: var(--fw3);
     line-height: 28px;
     padding-left: 3em;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.off-canvas .expand > :where(ul, .mega) {
+    max-height: 2000px;
 }
 .off-canvas .thetop-nav ul, .off-canvas nav > ul {
     flex-direction: column;
@@ -564,6 +580,7 @@ form.search button:hover{
     font-size: var(--font-small);
     line-height: 36px;
     padding-top: 1.2em;
+    margin: 1.25em 0;
     border-top: 1px solid var(--border-color);
 
 }

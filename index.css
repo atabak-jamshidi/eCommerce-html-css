@@ -803,7 +803,7 @@ form.search button:hover{
     display: flex;
     flex-direction: column;
 }
-.products:where(.big,.main.one) .content {
+.products:where(.big, .main, .one) .content {
     gap: 1em;
     margin-top: 1.25em;
 }
@@ -835,6 +835,15 @@ form.search button:hover{
     font-size: calc(1em + 1vw);
     color: var(--primary-color);
     margin-right: 0.25em;
+}
+.products .stock-danger {
+    color: var(--primary-color);
+    font-weight: var(--fw6);
+}
+.flexwrap .row {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-bottom: 2em;
 }
     /*
         04.Product
@@ -893,14 +902,67 @@ form.search button:hover{
     font-weight: 400;
 }
 
+/*
+    04.Product
+        d. Main Product
+*/
+.products.main .item {
+    flex-direction: column;
+    flex: 0 0 100%;
+    padding: 0 0.938em 2em 0.938em;
+}
+.products.main .media {
+    height: 390px;
+}
+.products.main .footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 0 1em 1em;
+    border-radius: 7px;
+    z-index: 1;
+    background: linear-gradient(0deg var(--light-bg-color) 0%, var(--white-color) 70%);
+    opacity: 0;
+    visibility: hidden;
+    will-change: opacity;
+    transition: all .2s ease-in-out;
+}
+.products.main .item:hover .footer {
+    opacity: 1;
+    visibility: visible;
+}
+.products.main .footer ul {
+    list-style: disc;
+    padding: 1.25em 0 0 1.25em;
+    line-height: 1.8;
+    border-right: 1px solid var(--border-color);
+    margin-top: 85px;
+}
+.products.main .item:hover .content > *:not(.footer) {
+    z-index: 3;
+}
+
+
 
 
 /* ? ................................
         Responsive
     ? */
+@media screen and (min-width: 481px) {
+    .products.main .item {
+        flex: 0 0 50%;
+    }
+}
+
 @media  screen and (min-width: 768px) {
     .products .price .current {
         font-size: 1.25em;
+    }
+    .products.mini {
+        flex: 0 0 50%;
+    }
+    .products.main .item {
+        flex: 0 0 33.333%;
     }
 }
 
@@ -1079,5 +1141,8 @@ form.search button:hover{
     }
     .products.big .media {
         max-height: 373px;
+    }
+    .products.main .item {
+        flex: 0 0 25%;
     }
 }
